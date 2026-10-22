@@ -131,6 +131,8 @@ pub enum Pass {
     MergeBlocks,
     /// Merges similar functions when benefical.
     MergeSimilarFunctions,
+    /// Merges itable structures into vtables to make types more compact.
+    MergeJ2clItables,
     /// Merges locals when beneficial.
     MergeLocals,
     /// Split types into minimal recursion groups.
@@ -394,6 +396,7 @@ impl Pass {
             MemoryPacking => "memory-packing",
             MergeBlocks => "merge-blocks",
             MergeSimilarFunctions => "merge-similar-functions",
+            MergeJ2clItables => "merge-j2cl-itables",
             MergeLocals => "merge-locals",
             MinimizeRecGroups => "minimize-rec-groups",
             Metrics => "metrics",
