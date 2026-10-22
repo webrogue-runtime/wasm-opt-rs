@@ -233,6 +233,8 @@ pub enum Pass {
     RemoveImports,
     /// Removes exports using a wildcard.
     RemoveExports,
+    /// Removes exports of empty functions.
+    RemoveEmptyFunctionExports,
     /// Removes memory segments.
     RemoveMemory,
     /// Removes memory initialization.
@@ -329,16 +331,14 @@ pub enum Pass {
     StripTargetFeatuers,
     /// Strip all toolchain-specific code annotations.
     StripToolchainAnnotations,
+    /// Convert calls in tail position to return calls.
+    TailCall,
     /// Translate old EH instructions to new ones.
     TranslateToNewEh,
     /// Translate old Phase 3 EH instructions to new ones with exnref.
     TranslateToExnref,
     /// Instrument the build with code to intercept specific function calls.
     TraceCalls,
-    /// Replace trapping operations with clamping semantics.
-    TrapModeClamp,
-    /// Replace trapping operations with js semantics.
-    TrapModeJs,
     /// Merge types to their supertypes where possible.
     TypeMerging,
     /// Mark all leaf types as final.
@@ -475,6 +475,7 @@ impl Pass {
             RemoveNonJsOps => "remove-non-js-ops",
             RemoveImports => "remove-imports",
             RemoveExports => "remove-exports",
+            RemoveEmptyFunctionExports => "remove-empty-function-exports",
             RemoveMemory => "remove-memory",
             RemoveMemoryInit => "remove-memory-init",
             RemoveRelaxedSimd => "remove-relaxed-simd",
@@ -523,8 +524,7 @@ impl Pass {
             StripEh => "strip-eh",
             StripTargetFeatuers => "strip-target-features",
             StripToolchainAnnotations => "strip-toolchain-annotations",
-            TrapModeClamp => "trap-mode-clamp",
-            TrapModeJs => "trap-mode-js",
+            TailCall => "tail-call",
             TranslateToNewEh => "translate-to-new-eh",
             TranslateToExnref => "translate-to-exnref",
             TraceCalls => "trace-calls",
