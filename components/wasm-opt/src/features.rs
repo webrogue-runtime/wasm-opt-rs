@@ -119,11 +119,11 @@ pub enum Feature {
     /// [Specification](https://github.com/WebAssembly/custom-descriptors/blob/main/proposals/custom-descriptors/Overview.md).
     #[strum(serialize = "custom-descriptors")]
     CustomDescriptors,
-    /// Relaxed atomics.
+    /// Acquire-release atomics.
     ///
     /// [Specification](https://github.com/WebAssembly/shared-everything-threads/blob/main/proposals/shared-everything-threads/Overview.md).
-    #[strum(serialize = "relaxed-atomics")]
-    RelaxedAtomics,
+    #[strum(serialize = "acquire-release-atomics")]
+    AcquireReleaseAtomics,
     /// Custom page sizes.
     ///
     /// [Specification](https://github.com/WebAssembly/custom-page-sizes/blob/main/proposals/custom-page-sizes/Overview.md).
@@ -144,6 +144,11 @@ pub enum Feature {
     /// [Specification](https://github.com/WebAssembly/compact-import-section).
     #[strum(serialize = "compact-imports")]
     CompactImports,
+    /// Relaxed atomics.
+    ///
+    /// [Specification](https://github.com/WebAssembly/shared-everything-threads/blob/main/proposals/shared-everything-threads/Overview.md).
+    #[strum(serialize = "relaxed-atomics")]
+    RelaxedAtomics,
     /// The original WebAssembly specification.
     ///
     /// It has the same value as `None`.

@@ -135,6 +135,8 @@ pub enum Pass {
     LlvmNontrappingFptointLowering,
     /// Attempt to merge segments to fit within web limits.
     LimitSegments,
+    /// Make structs and arrays shared and functions unshared.
+    MakeSharedObjects,
     /// Lower loads and stores to a 64-bit memory to instead use a 32-bit one.
     Memory64Lowering,
     /// Lower 64-bit tables to 32-bit ones.
@@ -424,6 +426,7 @@ impl Pass {
             LlvmMemoryCopyFillLowering => "llvm-memory-copy-fill-lowering",
             LlvmNontrappingFptointLowering => "llvm-nontrapping-fptoint-lowering",
             LimitSegments => "limit-segments",
+            MakeSharedObjects => "make-shared-objects",
             Memory64Lowering => "memory64-lowering",
             Table64Lowering => "table64-lowering",
             MemoryPacking => "memory-packing",
