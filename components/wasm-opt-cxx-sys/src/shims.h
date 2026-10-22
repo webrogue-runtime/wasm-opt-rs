@@ -1,6 +1,7 @@
 #ifndef wasmopt_shims_h
 #define wasmopt_shims_h
 
+#include "parsing.h"
 #include "pass.h"
 #include "source-map.h"
 #include "wasm-io.h"
@@ -149,6 +150,10 @@ namespace wasm_shims {
 
     void setFlexibleInlineMaxSize(uint32_t size) {
       inner.flexibleInlineMaxSize = size;
+    }
+
+    void setMaxCombinedBinarySize(uint32_t size) {
+      inner.maxCombinedBinarySize = size;
     }
 
     void setAllowFunctionsWithLoops(bool allow) {
@@ -331,11 +336,12 @@ namespace wasm_shims {
 
     // The size assertion will fail when `InliningOptions` fields change,
     // which indicates the current test need to be updated.
-    assert(sizeof(inliningOptionsDefaults->inner) == 20);
+    assert(sizeof(inliningOptionsDefaults->inner) == 24);
     
     bool isEqual = (inlining->inner.alwaysInlineMaxSize == inliningOptionsDefaults->inner.alwaysInlineMaxSize)
       && (inlining->inner.oneCallerInlineMaxSize == inliningOptionsDefaults->inner.oneCallerInlineMaxSize)
       && (inlining->inner.flexibleInlineMaxSize == inliningOptionsDefaults->inner.flexibleInlineMaxSize)
+      && (inlining->inner.maxCombinedBinarySize == inliningOptionsDefaults->inner.maxCombinedBinarySize)
       && (inlining->inner.allowFunctionsWithLoops == inliningOptionsDefaults->inner.allowFunctionsWithLoops)
       && (inlining->inner.partialInliningIfs == inliningOptionsDefaults->inner.partialInliningIfs);
     
@@ -365,6 +371,7 @@ namespace wasm_shims {
       && (passOptions->inner.inlining.alwaysInlineMaxSize == passOptionsDefaults.inlining.alwaysInlineMaxSize)
       && (passOptions->inner.inlining.oneCallerInlineMaxSize == passOptionsDefaults.inlining.oneCallerInlineMaxSize)
       && (passOptions->inner.inlining.flexibleInlineMaxSize == passOptionsDefaults.inlining.flexibleInlineMaxSize)
+      && (passOptions->inner.inlining.maxCombinedBinarySize == passOptionsDefaults.inlining.maxCombinedBinarySize)
       && (passOptions->inner.inlining.allowFunctionsWithLoops == passOptionsDefaults.inlining.allowFunctionsWithLoops)
       && (passOptions->inner.inlining.partialInliningIfs == passOptionsDefaults.inlining.partialInliningIfs);
    

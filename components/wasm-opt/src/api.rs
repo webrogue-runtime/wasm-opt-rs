@@ -86,6 +86,10 @@ pub struct InliningOptions {
     ///
     /// Default: `20`.
     pub flexible_inline_max_size: u32,
+    /// The limit for the combined size of the code after inlining.
+    ///
+    /// Default: `400 * 1024`.
+    pub max_combined_binary_size: u32,
     /// Functions with loops are usually not inlined.
     ///
     /// Default: `false`.
@@ -345,6 +349,7 @@ impl Default for InliningOptions {
             always_inline_max_size: 2,
             one_caller_inline_max_size: u32::MAX,
             flexible_inline_max_size: 20,
+            max_combined_binary_size: 400 * 1024,
             allow_functions_with_loops: false,
             partial_inlining_ifs: 0,
         }

@@ -40,6 +40,12 @@ impl OptimizationOptions {
         self
     }
 
+    /// Sets [`InliningOptions::max_combined_binary_size`].
+    pub fn max_combined_binary_size(&mut self, value: u32) -> &mut Self {
+        self.inlining.max_combined_binary_size = value;
+        self
+    }
+
     /// Sets [`InliningOptions::allow_functions_with_loops`].
     pub fn allow_functions_with_loops(&mut self, value: bool) -> &mut Self {
         self.inlining.allow_functions_with_loops = value;

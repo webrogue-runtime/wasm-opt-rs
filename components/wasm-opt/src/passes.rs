@@ -89,6 +89,8 @@ pub enum Pass {
     GufaOptimizing,
     /// Apply more specific subtypes to type fields where possible.
     TypeRefining,
+    /// Apply more specific subtypes to type fields where possible (using GUFA).
+    TypeRefiningGufa,
     /// Replace GC allocations with locals.
     Heap2Local,
     /// Optimize heap (GC) stores.
@@ -119,6 +121,8 @@ pub enum Pass {
     InstrumentLocals,
     /// Instrument the build with code to intercept all loads and stores.
     InstrumentMemory,
+    /// Instrument branch hints so we can see which guessed right.
+    InstrumentBranchHints,
     /// Loop invariant code motion.
     Licm,
     /// Lower memory.copy and memory.fill to wasm mvp and disable the bulk-memory feature.
@@ -295,6 +299,8 @@ pub enum Pass {
     StringGathering,
     /// Lowers wasm strings and operations to imports.
     StringLowering,
+    /// Lift string imports to wasm strings.
+    StringLifting,
     /// Same as string-lowering, but encodes well-formed strings as magic imports.
     StringLoweringMagicImports,
     /// Same as string-lowering-magic-imports, but raise a fatal error if there are invalid strings.
@@ -383,6 +389,7 @@ impl Pass {
             GufaCastAll => "gufa-cast-all",
             GufaOptimizing => "gufa-optimizing",
             TypeRefining => "type-refining",
+            TypeRefiningGufa => "type-refining-gufa",
             Heap2Local => "heap2local",
             HeapStoreOptimization => "heap-store-optimization",
             InlineMain => "inline-main",
@@ -398,6 +405,7 @@ impl Pass {
             I64ToI32Lowering => "i64-to-i32-lowering",
             InstrumentLocals => "instrument-locals",
             InstrumentMemory => "instrument-memory",
+            InstrumentBranchHints => "instrument-branch-hints",
             Licm => "licm",
             LlvmMemoryCopyFillLowering => "llvm-memory-copy-fill-lowering",
             LlvmNontrappingFptointLowering => "llvm-nontrapping-fptoint-lowering",
@@ -486,6 +494,7 @@ impl Pass {
             StackCheck => "stack-check",
             StringGathering => "string-gathering",
             StringLowering => "string-lowering",
+            StringLifting => "string-lifting",
             StringLoweringMagicImports => "string-lowering-magic-imports",
             StringLoweringMagicImportsAssert => "string-lowering-magic-imports-assert",
             StripDebug => "strip-debug",

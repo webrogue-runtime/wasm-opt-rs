@@ -187,6 +187,11 @@ impl InliningOptions {
         this.setFlexibleInlineMaxSize(size);
     }
 
+    pub fn set_max_combined_binary_size(&mut self, size: u32) {
+        let this = self.0.pin_mut();
+        this.setMaxCombinedBinarySize(size);
+    }
+
     pub fn set_allow_functions_with_loops(&mut self, allow: bool) {
         let this = self.0.pin_mut();
         this.setAllowFunctionsWithLoops(allow);

@@ -255,6 +255,7 @@ impl OptimizationOptions {
         inlining.set_always_inline_max_size(self.inlining.always_inline_max_size);
         inlining.set_one_caller_inline_max_size(self.inlining.one_caller_inline_max_size);
         inlining.set_flexible_inline_max_size(self.inlining.flexible_inline_max_size);
+        inlining.set_max_combined_binary_size(self.inlining.max_combined_binary_size);
         inlining.set_allow_functions_with_loops(self.inlining.allow_functions_with_loops);
         inlining.set_partial_inlining_ifs(self.inlining.partial_inlining_ifs);
 

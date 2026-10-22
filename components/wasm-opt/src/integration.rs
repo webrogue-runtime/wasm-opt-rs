@@ -215,6 +215,9 @@ fn parse_command_args(command: Command) -> Result<ParsedCliArgs, Error> {
             "--flexible-inline-max-function-size" | "-fimfs" => {
                 opts.flexible_inline_max_size(parse_u32(&mut args)?);
             }
+            "--inline-max-combined-binary-size" | "-imcbs" => {
+                opts.max_combined_binary_size(parse_u32(&mut args)?);
+            }
             "--one-caller-inline-max-function-size" | "-ocifms" => {
                 opts.one_caller_inline_max_size(parse_u32(&mut args)?);
             }

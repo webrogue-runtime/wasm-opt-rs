@@ -117,6 +117,8 @@ pub mod wasm {
 
         fn setFlexibleInlineMaxSize(self: Pin<&mut Self>, size: u32);
 
+        fn setMaxCombinedBinarySize(self: Pin<&mut Self>, size: u32);
+
         fn setAllowFunctionsWithLoops(self: Pin<&mut Self>, allow: bool);
 
         fn setPartialInliningIfs(self: Pin<&mut Self>, number: u32);
