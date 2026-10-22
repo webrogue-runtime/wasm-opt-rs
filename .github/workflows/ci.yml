@@ -14,39 +14,39 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [macos-11, windows-2019, ubuntu-20.04]
+        os: [macos-latest, windows-latest, ubuntu-latest]
         rust: [stable, 1.48.0]
         c-compiler: ['']
         cxx-compiler: ['']
         target: ['']
         include:
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             rust: nightly
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             rust: beta
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             target: i686-unknown-linux-gnu
             rust: stable
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             rust: stable
-          - os: windows-2019
+          - os: windows-latest
             target: i686-pc-windows-msvc
             rust: stable
-          - os: windows-2019
+          - os: windows-latest
             rust: stable
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             rust: stable
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             c-compiler: clang
             cxx-compiler: clang++
             rust: stable
-          - os: ubuntu-20.04
-            c-compiler: gcc-7
-            cxx-compiler: g++-7
+          - os: ubuntu-latest
+            c-compiler: gcc
+            cxx-compiler: g++
             rust: stable
-          - os: ubuntu-20.04
-            c-compiler: clang-7
-            cxx-compiler: clang++-7
+          - os: ubuntu-latest
+            c-compiler: clang
+            cxx-compiler: clang++
             rust: stable
 
     runs-on: ${{ matrix.os }}
@@ -80,7 +80,7 @@ jobs:
       - if: matrix.target != ''
         run: rustup target add ${{matrix.target}}
 
-      - if: ${{ matrix.target != '' && matrix.os == 'ubuntu-20.04' }}
+      - if: ${{ matrix.target != '' && matrix.os == 'ubuntu-latest' }}
         name: Install cross tools
         run: |
           sudo apt-get update
@@ -118,16 +118,6 @@ jobs:
       - name: Checkout submodule
         run: git submodule update --init --recursive
       - run: cargo test --manifest-path components/conformance-tests/Cargo.toml
-
-  non-dwarf:
-    name: Without dwarf feature
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Checkout submodule
-        run: git submodule update --init --recursive
-      - run: cargo test --no-default-features
-      - run: cargo test --no-default-features --manifest-path components/conformance-tests/Cargo.toml
 
   fmt:
     name: Cargo fmt

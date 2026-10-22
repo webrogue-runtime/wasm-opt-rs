@@ -1,3 +1,11 @@
+## 0.117.0
+
+- Upgraded to Binaryen 117.
+- DWARF support is now always enabled; the `dwarf` cargo feature was removed.
+  Binaryen's vendored LLVM is compiled into the `binaryen_llvm` namespace (and
+  its `extern "C"` entry points are prefixed) so that it does not clash with an
+  LLVM linked by the final binary.
+
 ## 0.116.1
 
 - [Fixed build on wasm32-wasmi](https://github.com/brson/wasm-opt-rs/pull/165).
