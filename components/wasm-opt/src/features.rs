@@ -139,6 +139,11 @@ pub enum Feature {
     /// [Specification](https://github.com/WebAssembly/wide-arithmetic/blob/main/proposals/wide-arithmetic/Overview.md).
     #[strum(serialize = "wide-arithmetic")]
     WideArithmetic,
+    /// Compact import section.
+    ///
+    /// [Specification](https://github.com/WebAssembly/compact-import-section).
+    #[strum(serialize = "compact-imports")]
+    CompactImports,
     /// The original WebAssembly specification.
     ///
     /// It has the same value as `None`.

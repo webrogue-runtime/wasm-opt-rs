@@ -33,6 +33,8 @@ pub enum Pass {
     CodeFolding,
     /// Hoist repeated constants to a local.
     ConstHoisting,
+    /// Finds and uses mathematical constraints on locals.
+    ConstraintAnalysis,
     /// Propagate constant struct field values.
     Cfp,
     /// Propagate constant struct field values, using ref.test.
@@ -372,6 +374,7 @@ impl Pass {
             CodePushing => "code-pushing",
             CodeFolding => "code-folding",
             ConstHoisting => "const-hoisting",
+            ConstraintAnalysis => "constraint-analysis",
             Cfp => "cfp",
             CfpRetest => "cfp-reftest",
             Dce => "dce",

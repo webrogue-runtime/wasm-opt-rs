@@ -333,6 +333,7 @@ fn convert_feature(feature: &Feature) -> BaseFeature {
         Feature::CustomPageSizes => BaseFeature::CustomPageSizes,
         Feature::Multibyte => BaseFeature::Multibyte,
         Feature::WideArithmetic => BaseFeature::WideArithmetic,
+        Feature::CompactImports => BaseFeature::CompactImports,
         Feature::Mvp => BaseFeature::None,
         Feature::Default => BaseFeature::Default,
         Feature::All => BaseFeature::All,
