@@ -175,6 +175,8 @@ pub enum Pass {
     NoInline,
     /// Mark functions as no-inline (for partial inlining only).
     NoPartialInline,
+    /// Mark JS called functions (using configureAll) as doing so.
+    MarkJsCalled,
     /// Reduces calls to code that only runs once.
     OnceReduction,
     /// Optimizes added constants into load/store offsets.
@@ -213,6 +215,8 @@ pub enum Pass {
     PrintCallGraph,
     /// Print a map of function indexes to names.
     PrintFunctionMap,
+    /// Print boundary in JSON format.
+    PrintBoundary,
     /// (Alias for print-function-map).
     Symbolmap,
     /// Propagate debug location from parents or previous siblings to child nodes.
@@ -223,6 +227,8 @@ pub enum Pass {
     RemoveNonJsOps,
     /// Removes imports and replaces them with nops.
     RemoveImports,
+    /// Removes exports using a wildcard.
+    RemoveExports,
     /// Removes memory segments.
     RemoveMemory,
     /// Removes memory initialization.
@@ -436,6 +442,7 @@ impl Pass {
             NoFullInline => "no-full-inline",
             NoInline => "no-inline",
             NoPartialInline => "no-partial-inline",
+            MarkJsCalled => "mark-js-called",
             OnceReduction => "once-reduction",
             OptimizeAddedConstants => "optimize-added-constants",
             OptimizeAddedConstantsPropagate => "optimize-added-constants-propagate",
@@ -455,11 +462,13 @@ impl Pass {
             PrintFull => "print-full",
             PrintCallGraph => "print-call-graph",
             PrintFunctionMap => "print-function-map",
+            PrintBoundary => "print-boundary",
             Symbolmap => "symbolmap",
             PropagateDebugLocs => "propagate-debug-locs",
             PropagateGlobalsGlobally => "propagate-globals-globally",
             RemoveNonJsOps => "remove-non-js-ops",
             RemoveImports => "remove-imports",
+            RemoveExports => "remove-exports",
             RemoveMemory => "remove-memory",
             RemoveMemoryInit => "remove-memory-init",
             RemoveRelaxedSimd => "remove-relaxed-simd",

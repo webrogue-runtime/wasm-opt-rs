@@ -1,3 +1,7 @@
+## 0.130.0
+
+- Upgraded to Binaryen 130.
+
 ## 0.129.0
 
 - Upgraded to Binaryen 129.

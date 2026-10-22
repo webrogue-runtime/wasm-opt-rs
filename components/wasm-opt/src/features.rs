@@ -134,6 +134,11 @@ pub enum Feature {
     /// [Specification](https://github.com/WebAssembly/multibyte-array-access).
     #[strum(serialize = "multibyte")]
     Multibyte,
+    /// Wide arithmetic.
+    ///
+    /// [Specification](https://github.com/WebAssembly/wide-arithmetic/blob/main/proposals/wide-arithmetic/Overview.md).
+    #[strum(serialize = "wide-arithmetic")]
+    WideArithmetic,
     /// The original WebAssembly specification.
     ///
     /// It has the same value as `None`.
