@@ -64,6 +64,15 @@ fn main() -> anyhow::Result<()> {
     CFG.exported_header_dirs.push(&tools_dir);
     CFG.exported_header_dirs.push(&output_dir);
 
+    // Binaryen uses the header of the FP16 proposal.
+    let fp16_include = binaryen_dir.join("third_party/FP16/include");
+    anyhow::ensure!(
+        fp16_include.is_dir(),
+        "binaryen FP16 headers are missing: {}",
+        fp16_include.display()
+    );
+    CFG.exported_header_dirs.push(&fp16_include);
+
     // Binaryen's support/suffix_tree.h includes LLVM's Allocator.h, so the
     // vendored LLVM headers are always needed on the include path.
     let llvm_include = llvm_dir.join("include");
@@ -325,7 +334,7 @@ fn create_config_header() -> anyhow::Result<()> {
     let output_dir = Path::new(&output_dir);
     let config_file = output_dir.join("config.h");
 
-    let config_text = "#define PROJECT_VERSION \"118 (version_118)\"";
+    let config_text = "#define PROJECT_VERSION \"119 (version_119)\"";
 
     fs::write(&config_file, config_text)?;
 

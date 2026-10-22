@@ -89,6 +89,8 @@ pub enum Pass {
     TypeRefining,
     /// Replace GC allocations with locals.
     Heap2Local,
+    /// Optimize heap (GC) stores.
+    HeapStoreOptimization,
     /// Inline __original_main into main.
     InlineMain,
     /// Inline functions (you probably want inlining-optimizing).
@@ -131,6 +133,8 @@ pub enum Pass {
     MergeSimilarFunctions,
     /// Merges locals when beneficial.
     MergeLocals,
+    /// Split types into minimal recursion groups.
+    MinimizeRecGroups,
     /// Reports metrics.
     Metrics,
     /// Minifies import names (only those, and not export names), and emits a mapping to the minified ones.
@@ -283,6 +287,8 @@ pub enum Pass {
     StringLowering,
     /// Same as string-lowering, but encodes well-formed strings as magic imports.
     StringLoweringMagicImports,
+    /// Same as string-lowering-magic-imports, but raise a fatal error if there are invalid strings.
+    StringLoweringMagicImportsAssert,
     /// Strip debug info (including the names section).
     StripDebug,
     /// Strip dwarf debug info.
@@ -367,6 +373,7 @@ impl Pass {
             GufaOptimizing => "gufa-optimizing",
             TypeRefining => "type-refining",
             Heap2Local => "heap2local",
+            HeapStoreOptimization => "heap-store-optimization",
             InlineMain => "inline-main",
             Inlining => "inlining",
             InliningOptimizing => "inlining-optimizing",
@@ -388,6 +395,7 @@ impl Pass {
             MergeBlocks => "merge-blocks",
             MergeSimilarFunctions => "merge-similar-functions",
             MergeLocals => "merge-locals",
+            MinimizeRecGroups => "minimize-rec-groups",
             Metrics => "metrics",
             MinifyImports => "minify-imports",
             MinifyImportsAndExports => "minify-imports-and-exports",
@@ -464,6 +472,7 @@ impl Pass {
             StringGathering => "string-gathering",
             StringLowering => "string-lowering",
             StringLoweringMagicImports => "string-lowering-magic-imports",
+            StringLoweringMagicImportsAssert => "string-lowering-magic-imports-assert",
             StripDebug => "strip-debug",
             StripDwarf => "strip-dwarf",
             StripProducers => "strip-producers",

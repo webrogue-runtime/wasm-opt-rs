@@ -183,10 +183,15 @@ impl OptimizationOptions {
             pass_runner.add_default_optimization_passes();
         }
 
-        self.passes
-            .more_passes
-            .iter()
-            .for_each(|pass| pass_runner.add(pass.name()));
+        self.passes.more_passes.iter().for_each(|pass| {
+            // A pass argument with the same name as the pass is the
+            // argument of that pass, e.g. the function name for the
+            // `extract-function` pass.
+            match self.passopts.arguments.get(pass.name()) {
+                Some(arg) => pass_runner.add_with_arg(pass.name(), arg),
+                None => pass_runner.add(pass.name()),
+            }
+        });
 
         pass_runner.run();
     }
@@ -319,6 +324,7 @@ fn convert_feature(feature: &Feature) -> BaseFeature {
         Feature::MultiMemory => BaseFeature::MultiMemory,
         Feature::TypedContinuations => BaseFeature::TypedContinuations,
         Feature::SharedEverything => BaseFeature::SharedEverything,
+        Feature::Fp16 => BaseFeature::Fp16,
         Feature::Mvp => BaseFeature::None,
         Feature::Default => BaseFeature::Default,
         Feature::All => BaseFeature::All,

@@ -97,6 +97,11 @@ pub enum Feature {
     /// [Specification](https://github.com/WebAssembly/shared-everything-threads/blob/main/proposals/shared-everything-threads/Overview.md).
     #[strum(serialize = "shared-everything")]
     SharedEverything,
+    /// Half-precision floating point.
+    ///
+    /// [Specification](https://github.com/WebAssembly/fp16).
+    #[strum(serialize = "fp16")]
+    Fp16,
     /// The original WebAssembly specification.
     ///
     /// It has the same value as `None`.

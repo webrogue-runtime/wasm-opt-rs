@@ -269,6 +269,7 @@ namespace wasm_shims {
     f.push_back(wasm::FeatureSet::Feature::MultiMemory);
     f.push_back(wasm::FeatureSet::Feature::TypedContinuations);
     f.push_back(wasm::FeatureSet::Feature::SharedEverything);
+    f.push_back(wasm::FeatureSet::Feature::FP16);
     // This is not part of the Rust API because it has the same value as None.
     // f.push_back(wasm::FeatureSet::Feature::MVP);
     f.push_back(wasm::FeatureSet::Feature::Default);
@@ -292,6 +293,10 @@ namespace wasm_shims {
 
     void add(std::string& passName) {
       inner.add(std::move(passName));
+    }
+
+    void add_with_arg(std::string& passName, std::string& passArg) {
+      inner.add(std::move(passName), std::move(passArg));
     }
 
     void addDefaultOptimizationPasses() {
