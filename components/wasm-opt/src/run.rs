@@ -330,6 +330,7 @@ fn convert_feature(feature: &Feature) -> BaseFeature {
         Feature::CallIndirectOverlong => BaseFeature::CallIndirectOverlong,
         Feature::CustomDescriptors => BaseFeature::CustomDescriptors,
         Feature::RelaxedAtomics => BaseFeature::RelaxedAtomics,
+        Feature::CustomPageSizes => BaseFeature::CustomPageSizes,
         Feature::Mvp => BaseFeature::None,
         Feature::Default => BaseFeature::Default,
         Feature::All => BaseFeature::All,

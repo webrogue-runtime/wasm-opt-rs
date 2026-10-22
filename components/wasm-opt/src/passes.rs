@@ -19,6 +19,8 @@ pub enum Pass {
     Dae,
     /// Removes arguments to calls in an lto-like manner, and optimizes where removed.
     DaeOptimizing,
+    /// Experimental reimplementation of DAE.
+    Dae2,
     /// Refine and merge abstract (never-created) types.
     AbstractTypeRefining,
     /// Reduce # of locals by coalescing.
@@ -357,6 +359,7 @@ impl Pass {
             AvoidReinterprets => "avoid-reinterprets",
             Dae => "dae",
             DaeOptimizing => "dae-optimizing",
+            Dae2 => "dae2",
             AbstractTypeRefining => "abstract-type-refining",
             CoalesceLocals => "coalesce-locals",
             CoalesceLocalsLearning => "coalesce-locals-learning",

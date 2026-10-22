@@ -124,6 +124,11 @@ pub enum Feature {
     /// [Specification](https://github.com/WebAssembly/shared-everything-threads/blob/main/proposals/shared-everything-threads/Overview.md).
     #[strum(serialize = "relaxed-atomics")]
     RelaxedAtomics,
+    /// Custom page sizes.
+    ///
+    /// [Specification](https://github.com/WebAssembly/custom-page-sizes/blob/main/proposals/custom-page-sizes/Overview.md).
+    #[strum(serialize = "custom-page-sizes")]
+    CustomPageSizes,
     /// The original WebAssembly specification.
     ///
     /// It has the same value as `None`.
