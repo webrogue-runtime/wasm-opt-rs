@@ -129,6 +129,11 @@ pub enum Feature {
     /// [Specification](https://github.com/WebAssembly/custom-page-sizes/blob/main/proposals/custom-page-sizes/Overview.md).
     #[strum(serialize = "custom-page-sizes")]
     CustomPageSizes,
+    /// Multibyte array loads and stores.
+    ///
+    /// [Specification](https://github.com/WebAssembly/multibyte-array-access).
+    #[strum(serialize = "multibyte")]
+    Multibyte,
     /// The original WebAssembly specification.
     ///
     /// It has the same value as `None`.

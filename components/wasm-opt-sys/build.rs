@@ -31,7 +31,7 @@ const LLVM_RENAMES: &[(&str, &str)] = &[
 ];
 
 fn main() -> anyhow::Result<()> {
-    check_cxx17_support()?;
+    check_cxx20_support()?;
 
     let output_dir = std::env::var("OUT_DIR")?;
     let output_dir = Path::new(&output_dir);
@@ -91,7 +91,7 @@ fn main() -> anyhow::Result<()> {
 
         let flags: &[_] = if !msvc {
             &[
-                "-std=c++17",
+                "-std=c++20",
                 "-w",
                 "-Wno-unused-parameter",
                 "-DTHROW_ON_FATAL",
@@ -100,7 +100,7 @@ fn main() -> anyhow::Result<()> {
             ]
         } else {
             &[
-                "/std:c++17",
+                "/std:c++20",
                 "/w",
                 "/DTHROW_ON_FATAL",
                 "/DBUILD_LLVM_DWARF",
@@ -334,28 +334,28 @@ fn create_config_header() -> anyhow::Result<()> {
     let output_dir = Path::new(&output_dir);
     let config_file = output_dir.join("config.h");
 
-    let config_text = "#define PROJECT_VERSION \"128 (version_128)\"";
+    let config_text = "#define PROJECT_VERSION \"129 (version_129)\"";
 
     fs::write(&config_file, config_text)?;
 
     Ok(())
 }
 
-fn check_cxx17_support() -> anyhow::Result<()> {
+fn check_cxx20_support() -> anyhow::Result<()> {
     let mut builder = cc::Build::new();
     builder.cpp(true);
 
     let target_env = std::env::var("CARGO_CFG_TARGET_ENV")?;
-    let cxx17_flag = if target_env != "msvc" {
-        "-std=c++17"
+    let cxx20_flag = if target_env != "msvc" {
+        "-std=c++20"
     } else {
-        "/std:c++17"
+        "/std:c++20"
     };
 
-    if !builder.is_flag_supported(cxx17_flag)? {
+    if !builder.is_flag_supported(cxx20_flag)? {
         return Err(anyhow::anyhow!(
             "C++ compiler does not support `{}` flag",
-            cxx17_flag
+            cxx20_flag
         ));
     }
 

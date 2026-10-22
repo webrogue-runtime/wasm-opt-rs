@@ -281,6 +281,7 @@ namespace wasm_shims {
     f.push_back(wasm::FeatureSet::Feature::CustomDescriptors);
     f.push_back(wasm::FeatureSet::Feature::RelaxedAtomics);
     f.push_back(wasm::FeatureSet::Feature::CustomPageSizes);
+    f.push_back(wasm::FeatureSet::Feature::Multibyte);
     // This is not part of the Rust API because it has the same value as None.
     // f.push_back(wasm::FeatureSet::Feature::MVP);
     f.push_back(wasm::FeatureSet::Feature::Default);

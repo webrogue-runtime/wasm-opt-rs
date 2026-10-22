@@ -337,13 +337,14 @@ pub enum Feature {
     CustomDescriptors = 1 << 21,
     RelaxedAtomics = 1 << 22,
     CustomPageSizes = 1 << 23,
+    Multibyte = 1 << 24,
     // MVP has the same value as None.
     // Mvp = 0,
     Default = 1 << 5 | 1 << 1, // SignExt | MutableGlobals,
     // GCNNLocals are opt-in: merely asking for "All" does not apply them. To
     // get all possible values use AllPossible. See setAll() below for more
     // details.
-    All = (1 << 24) - 1,
+    All = (1 << 25) - 1,
 }
 
 pub struct PassRunner<'wasm>(cxx::UniquePtr<wasm::PassRunner<'wasm>>);

@@ -331,6 +331,7 @@ fn convert_feature(feature: &Feature) -> BaseFeature {
         Feature::CustomDescriptors => BaseFeature::CustomDescriptors,
         Feature::RelaxedAtomics => BaseFeature::RelaxedAtomics,
         Feature::CustomPageSizes => BaseFeature::CustomPageSizes,
+        Feature::Multibyte => BaseFeature::Multibyte,
         Feature::Mvp => BaseFeature::None,
         Feature::Default => BaseFeature::Default,
         Feature::All => BaseFeature::All,
