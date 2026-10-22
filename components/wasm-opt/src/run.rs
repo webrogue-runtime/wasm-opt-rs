@@ -327,6 +327,7 @@ fn convert_feature(feature: &Feature) -> BaseFeature {
         Feature::Fp16 => BaseFeature::Fp16,
         Feature::BulkMemoryOpt => BaseFeature::BulkMemoryOpt,
         Feature::CallIndirectOverlong => BaseFeature::CallIndirectOverlong,
+        Feature::CustomDescriptors => BaseFeature::CustomDescriptors,
         Feature::Mvp => BaseFeature::None,
         Feature::Default => BaseFeature::Default,
         Feature::All => BaseFeature::All,

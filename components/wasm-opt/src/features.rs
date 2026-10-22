@@ -114,6 +114,11 @@ pub enum Feature {
     /// LEB call-indirect encodings.
     #[strum(serialize = "call-indirect-overlong")]
     CallIndirectOverlong,
+    /// Custom descriptors.
+    ///
+    /// [Specification](https://github.com/WebAssembly/custom-descriptors/blob/main/proposals/custom-descriptors/Overview.md).
+    #[strum(serialize = "custom-descriptors")]
+    CustomDescriptors,
     /// The original WebAssembly specification.
     ///
     /// It has the same value as `None`.

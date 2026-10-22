@@ -273,6 +273,7 @@ namespace wasm_shims {
     f.push_back(wasm::FeatureSet::Feature::FP16);
     f.push_back(wasm::FeatureSet::Feature::BulkMemoryOpt);
     f.push_back(wasm::FeatureSet::Feature::CallIndirectOverlong);
+    f.push_back(wasm::FeatureSet::Feature::CustomDescriptors);
     // This is not part of the Rust API because it has the same value as None.
     // f.push_back(wasm::FeatureSet::Feature::MVP);
     f.push_back(wasm::FeatureSet::Feature::Default);
