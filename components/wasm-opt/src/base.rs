@@ -327,13 +327,15 @@ pub enum Feature {
     TypedContinuations = 1 << 16,
     SharedEverything = 1 << 17,
     Fp16 = 1 << 18,
+    BulkMemoryOpt = 1 << 19,
+    CallIndirectOverlong = 1 << 20,
     // MVP has the same value as None.
     // Mvp = 0,
     Default = 1 << 5 | 1 << 1, // SignExt | MutableGlobals,
     // GCNNLocals are opt-in: merely asking for "All" does not apply them. To
     // get all possible values use AllPossible. See setAll() below for more
     // details.
-    All = (1 << 19) - 1,
+    All = (1 << 21) - 1,
 }
 
 pub struct PassRunner<'wasm>(cxx::UniquePtr<wasm::PassRunner<'wasm>>);

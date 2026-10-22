@@ -2,6 +2,7 @@
 #define wasmopt_shims_h
 
 #include "pass.h"
+#include "source-map.h"
 #include "wasm-io.h"
 #include "support/colors.h"
 #include "wasm-validator.h"
@@ -270,6 +271,8 @@ namespace wasm_shims {
     f.push_back(wasm::FeatureSet::Feature::TypedContinuations);
     f.push_back(wasm::FeatureSet::Feature::SharedEverything);
     f.push_back(wasm::FeatureSet::Feature::FP16);
+    f.push_back(wasm::FeatureSet::Feature::BulkMemoryOpt);
+    f.push_back(wasm::FeatureSet::Feature::CallIndirectOverlong);
     // This is not part of the Rust API because it has the same value as None.
     // f.push_back(wasm::FeatureSet::Feature::MVP);
     f.push_back(wasm::FeatureSet::Feature::Default);

@@ -325,6 +325,8 @@ fn convert_feature(feature: &Feature) -> BaseFeature {
         Feature::TypedContinuations => BaseFeature::TypedContinuations,
         Feature::SharedEverything => BaseFeature::SharedEverything,
         Feature::Fp16 => BaseFeature::Fp16,
+        Feature::BulkMemoryOpt => BaseFeature::BulkMemoryOpt,
+        Feature::CallIndirectOverlong => BaseFeature::CallIndirectOverlong,
         Feature::Mvp => BaseFeature::None,
         Feature::Default => BaseFeature::Default,
         Feature::All => BaseFeature::All,

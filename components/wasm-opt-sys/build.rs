@@ -334,7 +334,7 @@ fn create_config_header() -> anyhow::Result<()> {
     let output_dir = Path::new(&output_dir);
     let config_file = output_dir.join("config.h");
 
-    let config_text = "#define PROJECT_VERSION \"120 (version_120)\"";
+    let config_text = "#define PROJECT_VERSION \"121 (version_121)\"";
 
     fs::write(&config_file, config_text)?;
 

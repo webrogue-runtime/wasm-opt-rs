@@ -102,6 +102,18 @@ pub enum Feature {
     /// [Specification](https://github.com/WebAssembly/fp16).
     #[strum(serialize = "fp16")]
     Fp16,
+    /// Just the memory.copy and memory.fill operations.
+    ///
+    /// This is the part of the bulk memory proposal that is also in the
+    /// [tool conventions](https://github.com/WebAssembly/tool-conventions/blob/main/Linking.md#target-features-section).
+    #[strum(serialize = "bulk-memory-opt")]
+    BulkMemoryOpt,
+    /// Overlong LEB encodings in call_indirect.
+    ///
+    /// This is a no-op for compatibility, Binaryen always accepts overlong
+    /// LEB call-indirect encodings.
+    #[strum(serialize = "call-indirect-overlong")]
+    CallIndirectOverlong,
     /// The original WebAssembly specification.
     ///
     /// It has the same value as `None`.

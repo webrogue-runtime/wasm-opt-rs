@@ -55,6 +55,8 @@ pub enum Pass {
     DuplicateFunctionElimination,
     /// Emit the target features section in the output.
     EmitTargetFeatures,
+    /// Modify the wasm (destructively) for closed-world.
+    EncloseWorld,
     /// Leaves just one function (useful for debugging).
     ExtractFunction,
     /// Leaves just one function selected by index.
@@ -119,6 +121,10 @@ pub enum Pass {
     InstrumentMemory,
     /// Loop invariant code motion.
     Licm,
+    /// Lower memory.copy and memory.fill to wasm mvp and disable the bulk-memory feature.
+    LlvmMemoryCopyFillLowering,
+    /// Lower nontrapping float-to-int operations to wasm mvp and disable the nontrapping fptoint feature.
+    LlvmNontrappingFptointLowering,
     /// Attempt to merge segments to fit within web limits.
     LimitSegments,
     /// Lower loads and stores to a 64-bit memory to instead use a 32-bit one.
@@ -359,6 +365,7 @@ impl Pass {
             DuplicateImportElimination => "duplicate-import-elimination",
             DuplicateFunctionElimination => "duplicate-function-elimination",
             EmitTargetFeatures => "emit-target-features",
+            EncloseWorld => "enclose-world",
             ExtractFunction => "extract-function",
             ExtractFunctionIndex => "extract-function-index",
             Flatten => "flatten",
@@ -390,6 +397,8 @@ impl Pass {
             InstrumentLocals => "instrument-locals",
             InstrumentMemory => "instrument-memory",
             Licm => "licm",
+            LlvmMemoryCopyFillLowering => "llvm-memory-copy-fill-lowering",
+            LlvmNontrappingFptointLowering => "llvm-nontrapping-fptoint-lowering",
             LimitSegments => "limit-segments",
             Memory64Lowering => "memory64-lowering",
             Table64Lowering => "table64-lowering",
