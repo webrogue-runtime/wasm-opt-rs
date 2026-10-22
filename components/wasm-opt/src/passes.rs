@@ -79,6 +79,8 @@ pub enum Pass {
     Gto,
     /// Globally optimize struct values.
     Gsi,
+    /// Globally optimize struct values, also emitting ref.cast_desc_eq.
+    GsiDescCast,
     /// Grand unified flow analyses.
     ///
     /// Optimize the entire program using information about what content can actually appear in each location.
@@ -103,8 +105,6 @@ pub enum Pass {
     InliningOptimizing,
     /// Lower away binaryen intrinsics.
     IntrinsicLowering,
-    /// Wrap imports and exports for JavaScript promise integration.
-    Jspi,
     /// Legalizes the import/export boundary and prunes when needed.
     LegalizeAndPruneJsInterface,
     /// Legalizes i64 types on the import/export boundary.
@@ -225,6 +225,8 @@ pub enum Pass {
     RemoveMemory,
     /// Removes memory initialization.
     RemoveMemoryInit,
+    /// Replaces relaxed SIMD instructions with unreachable.
+    RemoveRelaxedSimd,
     /// Removes breaks from locations that are not needed.
     RemoveUnusedBrs,
     /// Removes unused module elements.
@@ -313,6 +315,8 @@ pub enum Pass {
     StripEh,
     /// Strip the wasm target features section.
     StripTargetFeatuers,
+    /// Strip all toolchain-specific code annotations.
+    StripToolchainAnnotations,
     /// Translate old EH instructions to new ones.
     TranslateToNewEh,
     /// Translate old Phase 3 EH instructions to new ones with exnref.
@@ -383,6 +387,7 @@ impl Pass {
             GlobalRefining => "global-refining",
             Gto => "gto",
             Gsi => "gsi",
+            GsiDescCast => "gsi-desc-cast",
             Gufa => "gufa",
             GufaCastAll => "gufa-cast-all",
             GufaOptimizing => "gufa-optimizing",
@@ -394,7 +399,6 @@ impl Pass {
             Inlining => "inlining",
             InliningOptimizing => "inlining-optimizing",
             IntrinsicLowering => "intrinsic-lowering",
-            Jspi => "jspi",
             LegalizeAndPruneJsInterface => "legalize-and-prune-js-interface",
             LegalizeJsInterface => "legalize-js-interface",
             LocalCse => "local-cse",
@@ -455,6 +459,7 @@ impl Pass {
             RemoveImports => "remove-imports",
             RemoveMemory => "remove-memory",
             RemoveMemoryInit => "remove-memory-init",
+            RemoveRelaxedSimd => "remove-relaxed-simd",
             RemoveUnusedBrs => "remove-unused-brs",
             RemoveUnusedModuleElements => "remove-unused-module-elements",
             RemoveUnusedNonfunctionModuleElements => "remove-unused-nonfunction-module-elements",
@@ -499,6 +504,7 @@ impl Pass {
             StripProducers => "strip-producers",
             StripEh => "strip-eh",
             StripTargetFeatuers => "strip-target-features",
+            StripToolchainAnnotations => "strip-toolchain-annotations",
             TrapModeClamp => "trap-mode-clamp",
             TrapModeJs => "trap-mode-js",
             TranslateToNewEh => "translate-to-new-eh",

@@ -119,6 +119,11 @@ pub enum Feature {
     /// [Specification](https://github.com/WebAssembly/custom-descriptors/blob/main/proposals/custom-descriptors/Overview.md).
     #[strum(serialize = "custom-descriptors")]
     CustomDescriptors,
+    /// Relaxed atomics.
+    ///
+    /// [Specification](https://github.com/WebAssembly/shared-everything-threads/blob/main/proposals/shared-everything-threads/Overview.md).
+    #[strum(serialize = "relaxed-atomics")]
+    RelaxedAtomics,
     /// The original WebAssembly specification.
     ///
     /// It has the same value as `None`.
