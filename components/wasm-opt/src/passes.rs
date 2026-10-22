@@ -223,6 +223,8 @@ pub enum Pass {
     RemoveImports,
     /// Removes memory segments.
     RemoveMemory,
+    /// Removes memory initialization.
+    RemoveMemoryInit,
     /// Removes breaks from locations that are not needed.
     RemoveUnusedBrs,
     /// Removes unused module elements.
@@ -448,6 +450,7 @@ impl Pass {
             RemoveNonJsOps => "remove-non-js-ops",
             RemoveImports => "remove-imports",
             RemoveMemory => "remove-memory",
+            RemoveMemoryInit => "remove-memory-init",
             RemoveUnusedBrs => "remove-unused-brs",
             RemoveUnusedModuleElements => "remove-unused-module-elements",
             RemoveUnusedNonfunctionModuleElements => "remove-unused-nonfunction-module-elements",

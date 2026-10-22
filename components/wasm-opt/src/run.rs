@@ -322,7 +322,7 @@ fn convert_feature(feature: &Feature) -> BaseFeature {
         Feature::ExtendedConst => BaseFeature::ExtendedConst,
         Feature::Strings => BaseFeature::Strings,
         Feature::MultiMemory => BaseFeature::MultiMemory,
-        Feature::TypedContinuations => BaseFeature::TypedContinuations,
+        Feature::StackSwitching => BaseFeature::StackSwitching,
         Feature::SharedEverything => BaseFeature::SharedEverything,
         Feature::Fp16 => BaseFeature::Fp16,
         Feature::BulkMemoryOpt => BaseFeature::BulkMemoryOpt,

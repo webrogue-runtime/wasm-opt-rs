@@ -268,7 +268,7 @@ namespace wasm_shims {
     f.push_back(wasm::FeatureSet::Feature::ExtendedConst);
     f.push_back(wasm::FeatureSet::Feature::Strings);
     f.push_back(wasm::FeatureSet::Feature::MultiMemory);
-    f.push_back(wasm::FeatureSet::Feature::TypedContinuations);
+    f.push_back(wasm::FeatureSet::Feature::StackSwitching);
     f.push_back(wasm::FeatureSet::Feature::SharedEverything);
     f.push_back(wasm::FeatureSet::Feature::FP16);
     f.push_back(wasm::FeatureSet::Feature::BulkMemoryOpt);

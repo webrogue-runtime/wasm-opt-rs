@@ -87,11 +87,11 @@ pub enum Feature {
     /// [Specification](https://github.com/WebAssembly/multi-memory/blob/master/proposals/multi-memory/Overview.md).
     #[strum(serialize = "multi-memory")]
     MultiMemory,
-    /// Typed continuations.
+    /// Stack switching.
     ///
-    /// [Specification](https://github.com/effect-handlers/wasm-spec/blob/main/proposals/continuations/Overview.md).
-    #[strum(serialize = "typed-continuations")]
-    TypedContinuations,
+    /// [Specification](https://github.com/WebAssembly/stack-switching/blob/main/proposals/stack-switching/Overview.md).
+    #[strum(serialize = "stack-switching")]
+    StackSwitching,
     /// Shared-everything threads.
     ///
     /// [Specification](https://github.com/WebAssembly/shared-everything-threads/blob/main/proposals/shared-everything-threads/Overview.md).

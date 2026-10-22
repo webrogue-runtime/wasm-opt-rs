@@ -324,7 +324,7 @@ pub enum Feature {
     ExtendedConst = 1 << 13,
     Strings = 1 << 14,
     MultiMemory = 1 << 15,
-    TypedContinuations = 1 << 16,
+    StackSwitching = 1 << 16,
     SharedEverything = 1 << 17,
     Fp16 = 1 << 18,
     BulkMemoryOpt = 1 << 19,
