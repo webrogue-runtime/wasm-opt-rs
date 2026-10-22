@@ -155,10 +155,6 @@ pub enum Pass {
     MinifyImportsAndExports,
     /// Minifies both import and export names, and emits a mapping to the minified ones, and minifies the modules as well.
     MinifyImportsAndExportsAndModules,
-    /// Apply the assumption that asyncify imports always unwind, and we never rewind.
-    ModAsyncifyAlwaysAndOnlyUnwind,
-    /// Apply the assumption that asyncify never unwinds.
-    ModAsyncifyNeverUnwind,
     /// Creates specialized versions of functions.
     Monomorphize,
     /// Creates specialized versions of functions (even if unhelpful).
@@ -247,6 +243,8 @@ pub enum Pass {
     ReorderGlobals,
     /// Sorts locals by access frequency.
     RecorderLocals,
+    /// Sorts private types by access frequency.
+    ReorderTypes,
     /// Re-optimize control flow using the relooper algorithm.
     Rereloop,
     /// Remove redundant local.sets.
@@ -422,8 +420,6 @@ impl Pass {
             MinifyImports => "minify-imports",
             MinifyImportsAndExports => "minify-imports-and-exports",
             MinifyImportsAndExportsAndModules => "minify-imports-and-exports-and-modules",
-            ModAsyncifyAlwaysAndOnlyUnwind => "mod-asyncify-always-and-only-unwind",
-            ModAsyncifyNeverUnwind => "mod-asyncify-never-unwind",
             Monomorphize => "monomorphize",
             MonomorphizeAlways => "monomorphize-always",
             MultiMemoryLowering => "multi-memory-lowering",
@@ -467,6 +463,7 @@ impl Pass {
             ReorderFunctionsByName => "reorder-functions-by-name",
             ReorderFunctions => "reorder-functions",
             ReorderGlobals => "reorder-globals",
+            ReorderTypes => "reorder-types",
             RecorderLocals => "reorder-locals",
             Rereloop => "rereloop",
             Rse => "rse",
