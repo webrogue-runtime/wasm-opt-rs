@@ -11,11 +11,11 @@ use wasm_opt::*;
 
 use std::error::Error;
 use std::fs::File;
-use std::io::BufWriter;
 use std::io::Write;
 use tempfile::Builder;
 
-static GARBAGE_FILE: &[u8] = include_bytes!("garbage_file.wat");
+/// Content that is neither a valid text module nor a valid binary module.
+static NOT_A_MODULE: &[u8] = b"this is not a wasm module\n";
 
 #[test]
 fn all_passes_correct() -> anyhow::Result<()> {
@@ -102,10 +102,11 @@ fn optimization_read_module_error_works() -> anyhow::Result<()> {
     let temp_dir = Builder::new().prefix("wasm_opt_tests").tempdir()?;
     let inpath = temp_dir.path().join("infile.wasm");
 
-    let file = File::create(&inpath)?;
-
-    let mut buf_writer = BufWriter::new(&file);
-    buf_writer.write_all(GARBAGE_FILE)?;
+    let mut file = File::create(&inpath)?;
+    // Neither valid text nor valid binary.
+    file.write_all(NOT_A_MODULE)?;
+    file.flush()?;
+    drop(file);
 
     let outpath = temp_dir.path().join("outfile.wasm");
 

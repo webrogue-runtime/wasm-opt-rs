@@ -92,6 +92,11 @@ pub enum Feature {
     /// [Specification](https://github.com/effect-handlers/wasm-spec/blob/main/proposals/continuations/Overview.md).
     #[strum(serialize = "typed-continuations")]
     TypedContinuations,
+    /// Shared-everything threads.
+    ///
+    /// [Specification](https://github.com/WebAssembly/shared-everything-threads/blob/main/proposals/shared-everything-threads/Overview.md).
+    #[strum(serialize = "shared-everything")]
+    SharedEverything,
     /// The original WebAssembly specification.
     ///
     /// It has the same value as `None`.

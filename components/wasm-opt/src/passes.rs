@@ -33,6 +33,8 @@ pub enum Pass {
     ConstHoisting,
     /// Propagate constant struct field values.
     Cfp,
+    /// Propagate constant struct field values, using ref.test.
+    CfpRetest,
     /// Removes unreachable code.
     Dce,
     /// Forces all loads and stores to have alignment 1.
@@ -69,8 +71,6 @@ pub enum Pass {
     GenerateI64Dyncalls,
     /// Generate global effect info (helps later passes).
     GenerateGlobalEffects,
-    /// Generate Stack IR.
-    GenerateStackIr,
     /// Refine the types of globals.
     GlobalRefining,
     /// Globally optimize GC types.
@@ -103,8 +103,6 @@ pub enum Pass {
     LegalizeAndPruneJsInterface,
     /// Legalizes i64 types on the import/export boundary.
     LegalizeJsInterface,
-    /// Legalizes i64 types on the import/export boundary in a minimal manner, only on things only JS will call.
-    LegalizeJsInterfaceMinimally,
     /// Common subexpression elimination inside basic blocks.
     LocalCse,
     /// Apply more specific subtypes to locals where possible.
@@ -123,6 +121,8 @@ pub enum Pass {
     LimitSegments,
     /// Lower loads and stores to a 64-bit memory to instead use a 32-bit one.
     Memory64Lowering,
+    /// Lower 64-bit tables to 32-bit ones.
+    Table64Lowering,
     /// Packs memory into separate segments, skipping zeros.
     MemoryPacking,
     /// Merges blocks to their parents.
@@ -173,8 +173,6 @@ pub enum Pass {
     OptimizeInstructions,
     /// Optimizes J2CL specific constructs.
     OptimizeJ2cl,
-    /// Optimize Stack IR.
-    OptimizeStackIr,
     /// Outline instructions.
     Outlining,
     /// Pick load signs based on their uses.
@@ -203,8 +201,8 @@ pub enum Pass {
     PrintFunctionMap,
     /// (Alias for print-function-map).
     Symbolmap,
-    /// Print out Stack IR (useful for internal debugging).
-    PrintStackIr,
+    /// Propagate debug location from parents or previous siblings to child nodes.
+    PropagateDebugLocs,
     /// Propagate global values to other globals (useful for tests).
     PropagateGlobalsGlobally,
     /// Removes operations incompatible with js.
@@ -283,6 +281,8 @@ pub enum Pass {
     StringGathering,
     /// Lowers wasm strings and operations to imports.
     StringLowering,
+    /// Same as string-lowering, but encodes well-formed strings as magic imports.
+    StringLoweringMagicImports,
     /// Strip debug info (including the names section).
     StripDebug,
     /// Strip dwarf debug info.
@@ -295,6 +295,10 @@ pub enum Pass {
     StripTargetFeatuers,
     /// Translate old EH instructions to new ones.
     TranslateToNewEh,
+    /// Translate old Phase 3 EH instructions to new ones with exnref.
+    TranslateToExnref,
+    /// Instrument the build with code to intercept specific function calls.
+    TraceCalls,
     /// Replace trapping operations with clamping semantics.
     TrapModeClamp,
     /// Replace trapping operations with js semantics.
@@ -336,6 +340,7 @@ impl Pass {
             CodeFolding => "code-folding",
             ConstHoisting => "const-hoisting",
             Cfp => "cfp",
+            CfpRetest => "cfp-reftest",
             Dce => "dce",
             Dealign => "dealign",
             DeNan => "denan",
@@ -354,7 +359,6 @@ impl Pass {
             GenerateDyncalls => "generate-dyncalls",
             GenerateI64Dyncalls => "generate-i64-dyncalls",
             GenerateGlobalEffects => "generate-global-effects",
-            GenerateStackIr => "generate-stack-ir",
             GlobalRefining => "global-refining",
             Gto => "gto",
             Gsi => "gsi",
@@ -370,7 +374,6 @@ impl Pass {
             Jspi => "jspi",
             LegalizeAndPruneJsInterface => "legalize-and-prune-js-interface",
             LegalizeJsInterface => "legalize-js-interface",
-            LegalizeJsInterfaceMinimally => "legalize-js-interface-minimally",
             LocalCse => "local-cse",
             LocalSubtyping => "local-subtyping",
             LogExecution => "log-execution",
@@ -380,6 +383,7 @@ impl Pass {
             Licm => "licm",
             LimitSegments => "limit-segments",
             Memory64Lowering => "memory64-lowering",
+            Table64Lowering => "table64-lowering",
             MemoryPacking => "memory-packing",
             MergeBlocks => "merge-blocks",
             MergeSimilarFunctions => "merge-similar-functions",
@@ -405,7 +409,6 @@ impl Pass {
             OptimizeCasts => "optimize-casts",
             OptimizeInstructions => "optimize-instructions",
             OptimizeJ2cl => "optimize-j2cl",
-            OptimizeStackIr => "optimize-stack-ir",
             Outlining => "outlining",
             PickLoadSigns => "pick-load-signs",
             Poppify => "poppify",
@@ -420,7 +423,7 @@ impl Pass {
             PrintCallGraph => "print-call-graph",
             PrintFunctionMap => "print-function-map",
             Symbolmap => "symbolmap",
-            PrintStackIr => "print-stack-ir",
+            PropagateDebugLocs => "propagate-debug-locs",
             PropagateGlobalsGlobally => "propagate-globals-globally",
             RemoveNonJsOps => "remove-non-js-ops",
             RemoveImports => "remove-imports",
@@ -460,6 +463,7 @@ impl Pass {
             StackCheck => "stack-check",
             StringGathering => "string-gathering",
             StringLowering => "string-lowering",
+            StringLoweringMagicImports => "string-lowering-magic-imports",
             StripDebug => "strip-debug",
             StripDwarf => "strip-dwarf",
             StripProducers => "strip-producers",
@@ -468,6 +472,8 @@ impl Pass {
             TrapModeClamp => "trap-mode-clamp",
             TrapModeJs => "trap-mode-js",
             TranslateToNewEh => "translate-to-new-eh",
+            TranslateToExnref => "translate-to-exnref",
+            TraceCalls => "trace-calls",
             TypeFinalizing => "type-finalizing",
             TypeMerging => "type-merging",
             TypeSsa => "type-ssa",

@@ -83,7 +83,11 @@ namespace wasm_shims {
 
 namespace wasm_shims {
   struct ModuleWriter {
+    // The writer keeps a reference to the options, so they must outlive it.
+    wasm::PassOptions options;
     wasm::ModuleWriter inner;
+
+    ModuleWriter() : inner(options) {}
 
     void setDebugInfo(bool debug) {
       inner.setDebugInfo(debug);
@@ -264,6 +268,7 @@ namespace wasm_shims {
     f.push_back(wasm::FeatureSet::Feature::Strings);
     f.push_back(wasm::FeatureSet::Feature::MultiMemory);
     f.push_back(wasm::FeatureSet::Feature::TypedContinuations);
+    f.push_back(wasm::FeatureSet::Feature::SharedEverything);
     // This is not part of the Rust API because it has the same value as None.
     // f.push_back(wasm::FeatureSet::Feature::MVP);
     f.push_back(wasm::FeatureSet::Feature::Default);
