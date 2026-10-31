@@ -6,11 +6,20 @@ license = "MIT / Apache-2.0"
 edition = "2018"
 publish = false
 
+[features]
+# Downloads prebuilt LLVM from GitHub Releases and links it statically to
+# detect duplicate symbols. Works on glibc Linux distros only
+llvm = ["dep:reqwest"]
+
+[dependencies]
+# Despite src/lib.rs is empty, wasm-opt crate is still needed
+# for tests as well as for llvm feature
+wasm-opt = { path = "../wasm-opt", default-features = false }
+
 [build-dependencies]
 anyhow = "1.0.58"
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "rustls-tls"], optional = true }
 
 [dev-dependencies]
 anyhow = "1.0.58"
-wasm-opt = { path = "../wasm-opt", version = "0.133.0", default-features = false }
 tempfile = "3.3.0"
-
